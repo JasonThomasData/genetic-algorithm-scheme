@@ -35,6 +35,16 @@ It would be interesting to see if:
 - The GA approach makes sense
 - The solution can be found faster than by using a brute-force method
 
+#### Further ideas
+
+This project will only generate algorithms of a fixed length. It would be good to not include all numbers as an option.
+
+For example if you have 6 numbers, then the binary expression tree will have 5 operators. If you make the naive assumption that all permutations are possible, then the number of permutations is ```2^11 - 2^10 = 1024```. You would double the possible permutations by allowing solutions with fewer numbers: ```2^11 = 2048```, but of course the before-mentioned assumption is wrong and the actual numbers are lower than these. 
+
+You could potentially allow for solutions with fewer numbers by removing a branches from trees by replacing them with symbols, and then just neglect to evaluate the symbol during the fitness function. Then you could rearrange the symbol and even reintroduce those removed terms if you want to.
+
+It would be useful to not have to do anything twice. When generating an algorithm, why not create a string representation and then put that in a hash table. When the table reaches the theoretical maximum size then the solution space is exhausted. Hopefully this won't be needed and the solution will perform better than brute-force method
+
 #### Some interesting results from real humans
 
 https://www.youtube.com/watch?v=pfa3MHLLSWI
