@@ -39,7 +39,7 @@ It would be interesting to see if:
 
 This project will only generate algorithms of a fixed length. It would be good to not include all numbers as an option.
 
-For example if you have 6 numbers, then the binary expression tree will have 5 operators. If you make the naive assumption that all permutations are possible, then the number of permutations is ```2^11 - 2^10 = 1024```. You would double the possible permutations by allowing solutions with fewer numbers: ```2^11 = 2048```, but of course the before-mentioned assumption is wrong and the actual numbers are lower than these. 
+For example if you have 6 numbers, then the binary expression tree will have 5 operators. If you make the naive assumption that all permutations are possible, then the number of permutations is (in the area of) ```11! = 39,916,800```. You would further increase the numbers of solutions by allowing solutions with fewer numbers: ```11! + 9! + 7! + 5! + 3! + 1! = 40284847```, but of course the before-mentioned assumption is wrong and the actual numbers are lower than the roughly ```40``` million number suggested above.
 
 You could potentially allow for solutions with fewer numbers by removing a branches from trees by replacing them with symbols, and then just neglect to evaluate the symbol during the fitness function. Then you could rearrange the symbol and even reintroduce those removed terms if you want to.
 
