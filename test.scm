@@ -1,8 +1,9 @@
 (import (chicken load))
 (import (chicken condition))
 (import test)
-(load-relative "genetic.scm")
 
+(print "binary-tree.scm")
+(load-relative "binary-tree.scm")
 
 (test
     "GIVEN tree is valid WHEN (eval-expression-tree tree) THEN return 2"
@@ -176,4 +177,49 @@
     "GIVEN pos-A is parent of pos-B WHEN (is-branch-parent 1 3) THEN returns false"
     #f
     (is-branch-parent 1 3)
+)
+
+(test-error
+    "GIVEN numbers list is same size as operators WHEN (form-expression-tree (list) (list)) THEN raises error"
+    (form-expression-tree (list 1 2 3) (list + - *))
+)
+
+(test
+    "GIVEN numbers list 1 larger than operators WHEN (form-expression-tree (list) (list)) THEN returns prefix tree"
+    (list + 1 - 2 * 3 4)
+    (form-expression-tree (list 1 2 3 4) (list + - *))
+)
+
+(print "parse.scm")
+(load-relative "parse.scm")
+
+(test
+    "GIVEN number is in approved numbers WHEN (check-is-approved number approved-numbers) THEN returns #t"
+    #t
+    (check-is-approved 2 (list 1 2 3))
+)
+
+(test
+    "GIVEN number is not in approved numbers WHEN (check-is-approved number approved-numbers) THEN returns #f"
+    #f
+    (check-is-approved 4 (list 1 2 3))
+)
+
+(test
+    "GIVEN expression WHEN (expr->string expression) THEN returns string representation"
+    "+ 1 - / 2 3 4 "
+    (expr->string (list + 1 - / 2 3 4))
+)
+
+(print "simulation.scm")
+(load-relative "simulation.scm")
+
+(test
+    "GIVEN list of valid expression trees WHEN (find-errors (trees)) THEN returns list of trees with errors"
+    (list
+        (cons (list + * 2 2 - 1 3) 4)
+        (cons (list + * 2 3 - 1 3) 2)
+        (cons (list + * 1 2 - 2 3) 5)
+    )
+    (find-errors (list (list + * 2 2 - 1 3) (list + * 2 3 - 1 3) (list + * 1 2 - 2 3)) 6) 
 )
