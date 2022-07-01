@@ -5,44 +5,6 @@
 (load-relative "binary-tree.scm")
 (load-relative "binary-tree-entropy.scm")
 
-#|
-
-(define (insertion-sort trees)
-    (define (insert last-sorted smaller possibly-larger to-insert)
-        (cond 
-            ((equal? last-sorted NIL)
-                (set! smaller (append smaller (list to-insert)))
-                ;(set! possibly-larger (cdr possibly-larger))
-                )
-            ((equal? last-sorted to-insert)
-
-                )
-            ((and (< last-sorted to-insert) (< to-insert (car possibly-larger)))
-                
-                )
-            ((< last-sorted (car possibly-larger))
-                
-                )
-            
-        
-        )
-        (append (append sorted-smaller (list to-insert)) sorted-possibly-larger)
-    )
-
-    (define (insertion-loop sorted-trees to-insert)
-        sorted-trees
-    )
-    ; This algorithm seems good for a linked list: 1) pop head of UNSORTED linked list, 2) iterate over sorted list, 3) link new object where it is sorted
-    (define (sort-loop sorted-trees unsorted-trees)
-        (define unsorted-element (car trees))
-        (set! trees (cdr trees))
-        
-    )
-    (sort-loop (list) trees)
-)
-
-|#
-
 (define (give-trees-report evaluated-trees generations)
     (print "\n")
     (define (report-loop evaluated-trees)
@@ -73,19 +35,3 @@
                     (let ((error (find-abs-error evaluation target)))
                         (let ((evaluated-tree (cons tree error)))
                             (error-loop (append evaluated-trees (list evaluated-tree)) trees-to-evaluate target))))))))
-
-
-(define (run-simulation small-numbers large-numbers target population-capacity generations)
-    (define operator-options (list + - / *))
-    (define numbers (append small-numbers large-numbers))
-    (define first-tree (create-one-tree numbers operator-options))
-    (define trees (create-mutations first-tree population-capacity))
-    (define simulation-loop (trees target population-capacity generations)
-        (cond ((or (equal? (length trees) population-capacity) (> (length trees) population-capacity))
-                  ;(evaluate-trees)
-                  ;(report-trees)
-                  (cull-trees))
-              ((< (length trees) population-capacity)
-                  (reproduce-trees)))
-        (simulation-loop trees target population-capacity generations))
-    (simulation-loop trees target population-capacity generations))
