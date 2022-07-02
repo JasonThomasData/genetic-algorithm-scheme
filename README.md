@@ -1,5 +1,7 @@
 ### Run
 
+Get the compiler at ```http://code.call-cc.org/releases/current/```
+
     sudo chicken-install args
     csc run.scm
     ./run
