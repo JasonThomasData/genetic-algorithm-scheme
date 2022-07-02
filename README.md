@@ -98,6 +98,7 @@ I think Scheme (Lisp) is the most appropriate, for a few reasons:
 - Functions are first-class citizens and can be stored in lists for use later.
 - Linked lists are the standard data type and this project uses insertion and swaps etc. This is faster than using arrays.
 - Chicken Scheme compiles rather than requiring an interpreter, which I think MIT Scheme does.
+- Scheme handles functions in a way very similar to how binary expression trees are written, eg: (+ 1 2) is a Scheme function but also ```+ 1 2``` is a tree with two leaf nodes. This is easy to recursively evaluate.
 
 ### Licence
 
