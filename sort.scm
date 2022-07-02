@@ -1,4 +1,3 @@
-
 (define (insert-loop last-sorted smaller to-insert possibly-larger)
     ; The trees here are themselves pairs, like ((list) error)
     ; Here, error is the difference between a tree's evaluation and the target
