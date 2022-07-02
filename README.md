@@ -14,10 +14,6 @@ Get the compiler at ```http://code.call-cc.org/releases/current/```
 
 ### Project idea
 
-To build a program that implements a genetic algorithm to solve a numbers problem.
-
-This should be a simple problem to solve but should allow a framework to scale it to larger problems.
-
 SBS used to run a show called "Letters and Numbers". The trick was you had to use given numbers and then use arithmetic to derive a given random number.
 
 The numbers segment had this format:
@@ -31,11 +27,51 @@ For example, if the target number is 525 and the 6 chosen numbers are 2,5,7,10,2
 
     (75*10)-(25*5*2)+7 = 507
 
-There are probably better solutions, but why not get software to do this for me?
+This project seeks to solve these problems.
 
-It would be interesting to see if:
-- The GA approach makes sense
-- The solution can be found faster than by using a brute-force method
+Here's the process:
+
+- Pass target number and numbers to use to the program
+- Generate some binary-expression-trees that operate on the numbers using the binary operators (+,-,*,/)
+- Then:
+    - For each tree measure its fitness in a greedy, naive way: how far is it from the target. This means the solution will reach local optimums
+    - Select the best of those and let them breed a-sexually. This is achieved by copying those more-fit algorithms and then applying a mutation to each copy.
+    - Then kill off half the population.
+
+### Example
+
+Running:
+
+    ./run --small 1,4,5,6 \
+          --large 25,50 \
+          --target 400 \
+          --pop 20 \
+          --gen 125 \
+          -e
+
+Produces different results:
+
+Three attempts after 125 generations:
+
+    Tree: / + 6 + 25 / 1 5 / 4 50 
+    Evaluation: 390
+    Error: 10
+
+    Tree: * - + 25 6 - - 4 50 1 5 
+    Evaluation: 390
+    Error: 10
+
+    Tree: * + 25 - 50 + 5 - 4 1 6 
+    Evaluation: 402
+    Error: 2
+
+And this one reaches a desirable result before the others at just 14 generations:
+
+    Tree: + 25 * 50 / 5 / 1 / 6 4 
+    Evaluation: 400
+    Error: 0
+
+The genetic programming approach means that the process is greedy and won't necessarily reach the global optimum. Often the program will reach and then get stuck at some kind of local optimum.
 
 #### Further ideas
 
@@ -45,7 +81,7 @@ For example if you have 6 numbers, then the binary expression tree will have 5 o
 
 You could potentially allow for solutions with fewer numbers by removing a branches from trees by replacing them with symbols, and then just neglect to evaluate the symbol during the fitness function. Then you could rearrange the symbol and even reintroduce those removed terms if you want to.
 
-It would be useful to not have to do anything twice. When generating an algorithm, why not create a string representation and then put that in a hash table. When the table reaches the theoretical maximum size then the solution space is exhausted. Hopefully this won't be needed and the solution will perform better than brute-force method
+It would be useful to not have to do anything twice. When generating an algorithm, why not create a string representation and then put that in a hash table. When the table reaches the theoretical maximum size then the solution space is exhausted. Hopefully this won't be needed and the solution will perform better than brute-force method.
 
 It would be interesting to see the progress over time, so you could take the error of the top-performing tree/algorithm in each generation and then plot that against the number of generations. 
 
@@ -54,15 +90,7 @@ It would be interesting to see the progress over time, so you could take the err
 https://www.youtube.com/watch?v=pfa3MHLLSWI
 https://www.youtube.com/watch?v=_JQYYz92-Uk
 
-#### Evolution!
 
-It would probably be most useful to train a ML algorithm to do this. But it would be more interesting (to me) to make a genetic algorithm.
-
-Here's the process:
-- Pass this program the target number and numbers to use
-- Generate some functions (as in a maths function) that operate on the numbers using the binary operators (+,-,*,/)
-- For each function measure its fitness in a greedy, naive way: how far is it from the target
-- Select the best of those and let them breed a-sexually
 
 ### Choice of language
 
