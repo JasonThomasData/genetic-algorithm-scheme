@@ -29,7 +29,7 @@
             (report-loop evaluated-trees generations-remaining))))
 
 (define (reproduce-trees trees operator-options)
-    ; trees are a-sexual and produce one new tree earch
+    ; trees are a-sexual and produce one new tree each
     (let reproduce-loop ((trees-to-reproduce trees)
                          (new-trees (list)))
         (if (null? trees-to-reproduce)

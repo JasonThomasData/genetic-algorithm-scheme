@@ -9,7 +9,7 @@
             (if (null? last-sorted) 
                 (if (or (< to-insert-error next-largest-error)
                         (equal? to-insert-error next-largest-error))
-                    (cons to-insert possibly-larger) ; Then the to-insert item is the smallest
+                    (cons to-insert possibly-larger)
                     (insert-loop (car possibly-larger)
                                  (append smaller (list (car possibly-larger)))
                                  to-insert

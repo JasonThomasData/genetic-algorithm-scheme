@@ -122,17 +122,12 @@
     (define node-b (list-ref tree pos-b))
 
     (cond ((and (number? node-a) (number? node-b))
-              ;(print "BOTH NUMBER")
-              ; This could be achieved with the branching swapping method but that would be overkill
               (swap-nodes tree pos-a node-a pos-b node-b))
           ((equal? pos-a 0)
-              ;(print "CHANGE ROOT")
               (replace-node tree pos-a replacement-operator))
           ((equal? pos-b 0)
-              ;(print "CHANGE ROOT")
               (replace-node tree pos-b replacement-operator))
           (else (let ((mutated-tree (swap-branches tree pos-a pos-b)))
-                    ;(print "BRANCH SWAP")
                     (if (equal? mutated-tree tree)
                         ; If a mutation fails at this point then it is because node-b is a child of node-a.
                         (replace-node tree pos-a replacement-operator)

@@ -90,8 +90,6 @@ It would be interesting to see the progress over time, so you could take the err
 https://www.youtube.com/watch?v=pfa3MHLLSWI
 https://www.youtube.com/watch?v=_JQYYz92-Uk
 
-
-
 ### Choice of language
 
 I think Scheme (Lisp) is the most appropriate, for a few reasons:

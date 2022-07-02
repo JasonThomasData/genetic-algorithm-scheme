@@ -14,15 +14,13 @@
         (list-ref options operator-to-select)))
 
 (define (select-operators options number-required)
-    (define (loop selected options number-required)
+    (let loop ((selected (list))
+               (options options)
+               (number-required number-required))
         (if (equal? number-required 0)
             selected
             (let ((selected (append selected (list (select-one-operator options)))))
-                (loop selected options (- number-required 1)))
-        )
-    )
-    (loop (list) options number-required)
-)
+                (loop selected options (- number-required 1))))))
 
 (define (create-one-tree numbers operator-options)
     (define number-count (length numbers))
