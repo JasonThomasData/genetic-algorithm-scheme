@@ -45,6 +45,8 @@ You could potentially allow for solutions with fewer numbers by removing a branc
 
 It would be useful to not have to do anything twice. When generating an algorithm, why not create a string representation and then put that in a hash table. When the table reaches the theoretical maximum size then the solution space is exhausted. Hopefully this won't be needed and the solution will perform better than brute-force method
 
+It would be interesting to see the progress over time, so you could take the error of the top-performing tree/algorithm in each generation and then plot that against the number of generations. 
+
 #### Some interesting results from real humans
 
 https://www.youtube.com/watch?v=pfa3MHLLSWI
